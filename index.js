@@ -20,24 +20,24 @@ app.use(express.json())
 // Conectar a BD
 db()
 
-// Configurar CORS
-// const whitelist = [process.env.FRONTEND_URL]
+//Configurar CORS
+const whitelist = [process.env.FRONTEND_URL, 'http://localhost:3000']
 
-// if(process.argv[2] === '--postman') {
-//     whitelist.push(undefined)
-// }
+if (process.argv[2] === '--postman') {
+	whitelist.push(undefined)
+}
 
-// const corsOptions = {
-//     origin: function(origin, callback) {
-//         if(whitelist.includes(origin)) {
-//             // Permite la conexión
-//             callback(null, true)
-//         } else {
-//             // No permitir la conexión
-//             callback(new Error('Error de CORS'))
-//         }
-//     }
-// }
+const corsOptions = {
+	origin: function (origin, callback) {
+		if (whitelist.includes(origin)) {
+			// Permite la conexión
+			callback(null, true)
+		} else {
+			// No permitir la conexión
+			callback(new Error('Error de CORS'))
+		}
+	},
+}
 
 app.use(cors())
 
