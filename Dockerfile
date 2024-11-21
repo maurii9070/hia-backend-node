@@ -1,5 +1,5 @@
 # Usar la imagen base de Bitnami para Node.js
-FROM node:22-alpine
+FROM node:20-alpine
 
 # Establecer el directorio de trabajo
 WORKDIR /app
