@@ -1,4 +1,4 @@
-import express from 'express' 
+import express from 'express'
 import dotenv from 'dotenv'
 import colors from 'colors'
 import cors from 'cors'
@@ -20,27 +20,26 @@ app.use(express.json())
 // Conectar a BD
 db()
 
-
 // Configurar CORS
-const whitelist = [process.env.FRONTEND_URL]
+// const whitelist = [process.env.FRONTEND_URL]
 
-if(process.argv[2] === '--postman') {
-    whitelist.push(undefined)
-}
+// if(process.argv[2] === '--postman') {
+//     whitelist.push(undefined)
+// }
 
-const corsOptions = {
-    origin: function(origin, callback) {
-        if(whitelist.includes(origin)) {
-            // Permite la conexión
-            callback(null, true)
-        } else {
-            // No permitir la conexión
-            callback(new Error('Error de CORS'))
-        }
-    }
-}
+// const corsOptions = {
+//     origin: function(origin, callback) {
+//         if(whitelist.includes(origin)) {
+//             // Permite la conexión
+//             callback(null, true)
+//         } else {
+//             // No permitir la conexión
+//             callback(new Error('Error de CORS'))
+//         }
+//     }
+// }
 
-app.use(cors(corsOptions))
+app.use(cors())
 
 // Definir una ruta
 app.use('/api/services', servicesRoutes)
@@ -53,5 +52,5 @@ const PORT = process.env.PORT || 4000
 
 // arrancar la app
 app.listen(PORT, () => {
-    console.log( colors.blue( 'El servidor se esta ejecutando en el puerto:'), colors.blue.bold(PORT ))
+	console.log(colors.blue('El servidor se esta ejecutando en el puerto:'), colors.blue.bold(PORT))
 })
