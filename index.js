@@ -21,7 +21,7 @@ app.use(express.json())
 db()
 
 //Configurar CORS
-const whitelist = [process.env.FRONTEND_URL, 'http://localhost:3000']
+const whitelist = [process.env.FRONTEND_URL]
 
 if (process.argv[2] === '--postman') {
 	whitelist.push(undefined)
