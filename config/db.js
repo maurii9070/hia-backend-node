@@ -1,9 +1,11 @@
+import mongoose from 'mongoose'
+import colors from 'colors'
 export const db = async () => {
     try {
         const db = await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            serverSelectionTimeoutMS: 10000,  // Tiempo de espera para la selección del servidor
+            serverSelectionTimeoutMS: 5000,  // Tiempo de espera para la selección del servidor
             socketTimeoutMS: 45000,  // Tiempo de espera para las operaciones
             replicaSet: 'rs0',  // Nombre del replica set
             readPreference: 'primaryPreferred',  // Preferencia de lectura
@@ -33,3 +35,4 @@ export const db = async () => {
         process.exit(1);  // Detener la aplicación si no se puede conectar
     }
 };
+
